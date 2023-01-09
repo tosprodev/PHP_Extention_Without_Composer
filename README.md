@@ -183,3 +183,85 @@ $j=1;
 ?>
 ```
 
+### Write the created spreadsheet using the save() function.
+```php
+<?php
+// Write an .xlsx file  
+$writer = new Xlsx($spreadsheet); 
+  
+// Save .xlsx file to the files directory 
+$writer->save('files/demo.xlsx'); 
+?>
+```
+
+### Full Code (Writing Excel File)
+```php
+<?php
+
+require 'vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\Spreadsheet; 
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx; 
+  
+// Creates New Spreadsheet 
+$spreadsheet = new Spreadsheet(); 
+  
+// Retrieve the current active worksheet 
+$sheet = $spreadsheet->getActiveSheet(); 
+
+// sample data from db
+// call the db get data function here
+//delete line from 18 to 20 and call the db function
+$data_from_db=array();
+$data_from_db[0]=array("name"=>"raja","age"=>23);
+$data_from_db[1]=array("name"=>"raja1","age"=>43);
+
+//set column header
+//set your own column header
+$column_header=["Name","Age"];
+$j=1;
+foreach($column_header as $x_value) {
+		$sheet->setCellValueByColumnAndRow($j,1,$x_value);
+  		$j=$j+1;
+  		
+	}
+
+//set value row
+for($i=0;$i<count($data_from_db);$i++)
+{
+
+//set value for indi cell
+$row=$data_from_db[$i];
+
+$j=1;
+
+	foreach($row as $x => $x_value) {
+		$sheet->setCellValueByColumnAndRow($j,$i+2,$x_value);
+  		$j=$j+1;
+	}
+
+}
+   
+// Write an .xlsx file  
+$writer = new Xlsx($spreadsheet); 
+  
+// Save .xlsx file to the files directory 
+$writer->save('files/demo.xlsx'); 
+?>
+```
+
+### We can set the cell value using setCellValue() function() by passing cell index name like A1, A2, D3 etc. and value.
+```php
+<?php
+// Set the value of cell A1 
+$sheet->setCellValue('A1', 'Raja!'); 
+  
+// Sets the value of cell B1 
+$sheet->setCellValue('B1', '25');
+?>
+```
+
+## For more reference : [Documentation]([https://pages.github.com/](https://phpspreadsheet.readthedocs.io/en/latest/))
+
+## I hope you find the tutorial will be helpful.
+
+### In this tutorial, we learned how to read the excel file and write the data to an excel on the server-side using the PHP Spreadsheet library. The Spreadsheet library is very simple and easy to use. Documentation is also very clear. We can do many things using the Spreadsheet library. It offers an excel function to apply to the cell also.
