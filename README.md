@@ -11,7 +11,7 @@ Phpspreadsheet : https://github.com/PHPOffice/PhpSpreadsheet
 ```php
 <?php
 
-require 'vendor/autoload.php';
+require 'PhpOffice/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
@@ -201,7 +201,7 @@ $writer->save('files/demo.xlsx');
 ```php
 <?php
 
-require 'vendor/autoload.php';
+require 'PhpOffice/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet; 
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx; 
   
